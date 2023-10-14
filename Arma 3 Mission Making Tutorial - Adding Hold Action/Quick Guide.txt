@@ -1,0 +1,39 @@
+So, let’s start in the missions initServer.sqf-file, if you don’t have one, make one. Here we are going to write this code.
+[] execVM “AddHoldActions.sqf”;
+
+Then in the AddHoldActions.sqf file, you past in these;
+[
+    plane1,
+    "Plant Explosives",
+    "\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa",
+    "\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa",
+    "(_this distance _target < 5) && (_this getVariable ['isBomBSpecialistPA', false])",
+    "_this distance _target < 5",
+    {},
+    {},                                                    
+    {_target setVariable ["BombPlanted", true, true];},
+    {},
+    [],
+    10,
+    0,
+    true,
+    false
+] remoteExec ["BIS_fnc_holdActionAdd", 0, plane1];
+
+The next we will do is to set up a trigger with the condition;
+Plane1 getVariable ['BombPlanted', false]
+Then in the On Activation, you fill it out with this;
+PlaneBomb = createVehicle ["SatchelCharge_Remote_Ammo_Scripted", position plane1, [], 5, ""];
+PlaneBomb attachTo [plane1, [0, 0, 1.5]];
+
+Then set up a trigger who will be the zone to the airfield, just give it the name airfieldzone.
+
+Then add a new trigger with these conditions;
+plane1 getVariable ['BombPlanted', false] && !(plane1 inArea airfieldzone);
+On Activation
+PlaneBomb setDamage 1;
+And boom!
+
+Quick comment, if you just want some players to have the posibility to plant the bomb, place this in their init-field; this setVariable ['isBomBSpecialistPA', true, true];
+If you want everyone to be able, just remove this part from the hold action code:
+(_this getVariable ['isBomBSpecialistPA', false])
