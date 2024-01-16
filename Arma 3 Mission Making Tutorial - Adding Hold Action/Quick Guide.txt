@@ -1,5 +1,5 @@
 So, let’s start in the missions initServer.sqf-file, if you don’t have one, make one. Here we are going to write this code.
-[] execVM “AddHoldActions.sqf”;
+[] execVM "AddHoldActions.sqf";
 
 Then in the AddHoldActions.sqf file, you past in these;
 [
