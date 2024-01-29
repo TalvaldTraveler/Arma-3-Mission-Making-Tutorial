@@ -1,1 +1,18 @@
-C
+Quick guide;
+Take the description.ext file and the codes folder and drop it into the mission folder for your mission. 
+
+
+Quesitons;
+Q. How do I use the trigger to call the spawn function?
+A. Set  the condition to true or some else condition who will return true in the mission, and in On Activation drop this code;
+  [Variable_To_Unit] call DOG_fnc_wolf;
+
+Q. I dont want to use the codes folder;
+A. Take the files inside the codes folder and drop it into the folder inside your mission folder you want this files to go, then change file="codes" to the folderpath for that folder. 
+  !remember! The path starts from the mission folder, so the first folder in the path is the folder inside the mission folder!.
+
+Q. I have allready a description.ext;
+A. If you don't have the CfgFunctions class inside that file, just open the description.ext-file and copy the whole CfgFunctions-class over to your description.ext-file.
+
+Q. I have allready the CfgFunctions-class.
+A. Then you just copy the class from class dog and past it into you missions CfgFunctions-class.
