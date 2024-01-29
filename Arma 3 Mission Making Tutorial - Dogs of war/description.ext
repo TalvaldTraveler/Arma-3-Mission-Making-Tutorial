@@ -1,0 +1,11 @@
+class CfgFunctions {
+	 class dog {
+		tag = "DOG";
+        class hound {
+            file = "codes";
+			class wolf;
+			class hunt;
+			class patrol;
+        };
+    };
+};
