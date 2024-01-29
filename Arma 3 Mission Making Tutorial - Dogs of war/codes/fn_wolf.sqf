@@ -22,7 +22,8 @@ params ["_hound", "_handler", "_grp", "_players"];
 		default { 
 			[_hound, "Dog_Run"] remoteExec ["playMove", 0]; 
 		};
-	}; 
+	}; 	
+	sleep 1;
 	_speed = speedMode _grp;
 	
 	while { alive _hound } do 
