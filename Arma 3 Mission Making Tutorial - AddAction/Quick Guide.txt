@@ -1,0 +1,66 @@
+So, let’s start in the missions initServer.sqf-file, if you don’t have one, make one. Here we are going to write this code.
+[] execVM "addActions.sqf";
+
+
+Then in the addActions.sqf file, you past in these;
+[
+	cage_door,
+	[
+		"Unlock Door",
+		{
+			params ["_target", "_caller", "_actionId"];
+			_items = itemsWithMagazines _caller;
+			if ("Keys" in _items) 
+			then {
+				_target setVariable["bis_disabled_Door_1",0,true];
+				"You unlocked the door." remoteExec ["hintSilent", _caller];
+			};
+		},
+		[nil],
+		12,
+		true,
+		true,
+		"",
+		"((_target getVariable 'bis_disabled_Door_1')!=0)",
+		2,
+		false,
+		"door_1",
+		""
+	]
+] remoteExec ["addAction", 0, cage_door];
+
+[
+	cage_door,
+	[
+		"Lock Door",
+		{
+			params ["_target", "_caller", "_actionId"];
+			_items = itemsWithMagazines _caller;
+			if ("Keys" in _items) 
+			then {
+				_target setVariable["bis_disabled_Door_1",1,true];
+				"You locked the door." remoteExec ["hintSilent", _caller];
+			};
+		},
+		[nil],
+		12,
+		true,
+		true,
+		"",
+		"((_target getVariable 'bis_disabled_Door_1')!=1)",
+		2,
+		false,
+		"door_1",
+		""
+	]
+] remoteExec ["addAction", 0, cage_door];
+
+
+Then you give the building you want to have a locked door on, this variable name, or you change it yourself;
+cage_door
+
+Then to get the selection, use this code;
+_selections = selectionNames cage_door;
+copyToClipboard str _selections;
+
+But most of the time will the selection and the door number be the same, so you will get far with just using door_doornumber and bis_disabled_Door_doornumber.
