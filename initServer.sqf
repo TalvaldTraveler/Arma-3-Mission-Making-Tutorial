@@ -1,1 +1,0 @@
-[] execVM "addActions.sqf";
