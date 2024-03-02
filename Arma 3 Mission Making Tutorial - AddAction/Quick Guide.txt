@@ -1,7 +1,6 @@
 So, let’s start in the missions initServer.sqf-file, if you don’t have one, make one. Here we are going to write this code.
 [] execVM "addActions.sqf";
 
-
 Then in the addActions.sqf file, you past in these;
 [
 	cage_door,
@@ -43,7 +42,7 @@ Then in the addActions.sqf file, you past in these;
 			};
 		},
 		[nil],
-		12,
+		6,
 		true,
 		true,
 		"",
@@ -55,12 +54,13 @@ Then in the addActions.sqf file, you past in these;
 	]
 ] remoteExec ["addAction", 0, cage_door];
 
-
 Then you give the building you want to have a locked door on, this variable name, or you change it yourself;
 cage_door
 
-Then to get the selection, use this code;
+bis_disabled_Door_1 is calling for a specefic door of that object, if you want to lock another door, just change out bis_disabled_Door_1 with bis_disabled_Door_(the number of you door), so if it's door 3 you want to lock/unlock, you change out bis_disabled_Door_1 with bis_disabled_Door_3 on all.
+
+Then to get the selection, you can use this code;
 _selections = selectionNames cage_door;
 copyToClipboard str _selections;
 
-But most of the time will the selection and the door number be the same, so you will get far with just using door_doornumber and bis_disabled_Door_doornumber.
+But most of the time you should be enable to just do this door_(the number of you door), without checking the selection.
