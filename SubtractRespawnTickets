@@ -1,0 +1,49 @@
+Yes, it's possible. But Reddit did ban me first time I posted this, so... you want to know how to do it?
+
+Ok, for the first part.
+"f they're using shittier weapons they use less tickets than the people using better tickets.".
+Please correct me here if I'm wrong, but Arma 3 do not have weapon class, in that sense that I can't just do something like this:
+primaryWeapon player == smg;
+But, we can do something like this;
+["arifle", primaryWeapon player] call BIS_fnc_inString;
+And if the weapon string name contains parts of the text "arifle", who most of the vanilla assault rifle has in its name, then this part will return true, similarly situation will we find also with the other weapon classes. This let us in a way check if a weapon are part of a weapon class.
+https://community.bistudio.com/wiki/BIS_fnc_inString
+https://community.bistudio.com/wiki/Arma_3:_CfgWeapons_Weapons
+
+So, what we need now is to have a onPlayerKilled.sqf file inside your mission folder, so if you don't have one, create one! This file will be executed locally when the player gets killed.
+When you have created your sqf-file, open it. Here inside we are going to create a switch. A switch is like a if then statement, but its let us check for more situations in the same time, but in order.
+The switch statement will look like this:
+switch (true) do
+{
+case (["arifle", primaryWeapon player] call BIS_fnc_inString): {};
+case (["LMG", primaryWeapon player] call BIS_fnc_inString): {[playerSide, -2] call BIS_fnc_respawnTickets};
+case (["SMG", primaryWeapon player] call BIS_fnc_inString): {};
+case (["srifle", primaryWeapon player] call BIS_fnc_inString): {[playerSide, -1] call BIS_fnc_respawnTickets};
+default {};
+};
+Here if the player has a primary weapon who has LMG in its string name, and they die, playerSide will get subtracted two tickets. And if they have a primary weapon who has the srifle in its string name, and they die, playerSide will get subtracted one ticket. Meanwhile SMG and arifle doesn't do anything here, and you can remove them.
+But one thing, if you want the players to lose tickets for using sniper rifles, but not when they are using a specific sniper rifle, for exemple, "srifle_DMR_01_ACO_F", then you can insert this case into the switch statement over the "srifle" case.
+switch (true) do
+{
+case ("srifle_DMR_01_ACO_F" isEqualTo primaryWeapon player): {};
+case (["srifle", primaryWeapon player] call BIS_fnc_inString): {[playerSide, -1] call BIS_fnc_respawnTickets};
+default {};
+};
+Since a switch statement will exit itself on the first statement who returns true here, therfore in this exemple players with the specefic sniper rifle/dmr will not lose a ticket, but other players using a diffrent sniper rifle will.
+https://community.bistudio.com/wiki/isEqualTo
+https://community.bistudio.com/wiki/BIS_fnc_respawnTickets
+
+Now, for the next part.
+"I also would like to set up tickets for if killed by player opfor using less tickets or something like that."
+The onPlayerKilled.sqf has some parameters who you can use, so I will just recommend to insert this line at the start of the file.
+params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
+Now, we are going to create a if then statement.
+And the if is going to check for if the killer, who is designated inside the _killer parameter, is a player, with the isPlayer command.
+And then inside then statement, you can subtract one more ticket for the player side (the killed player) for punishment for getting killed by an other player.
+Like this:
+if (isPlayer _killer) then { [playerSide, -1] call BIS_fnc_respawnTickets};
+or you could make it so the side of the player who get killed didn't lose a ticket,
+if (isPlayer _killer) then { [playerSide, 1] call BIS_fnc_respawnTickets};
+Or you could reward the killer by adding a ticket to the killer side.
+if (isPlayer _killer) then { [side _killer, 1] call BIS_fnc_respawnTickets};
+Remember, this ticket drain is on top of the one ticket drain of either on ticket lose on death or respawn!
