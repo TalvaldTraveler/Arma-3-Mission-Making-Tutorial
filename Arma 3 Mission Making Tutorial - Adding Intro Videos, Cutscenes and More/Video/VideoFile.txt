@@ -1,0 +1,2 @@
+VideoFile - I'm a dummy. 
+In this folder place your videofile.

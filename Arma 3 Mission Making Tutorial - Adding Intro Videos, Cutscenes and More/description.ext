@@ -1,0 +1,11 @@
+class CfgFunctions
+{
+	class TYST
+	{
+		class playVideoCategory
+		{
+            class playTriggeredVideo;
+            class playDialogVideo;
+		};
+	};
+};
