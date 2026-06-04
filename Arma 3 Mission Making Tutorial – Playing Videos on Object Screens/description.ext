@@ -1,0 +1,14 @@
+class CfgFunctions
+{
+	class TYST
+	{
+		class actionsCategory
+		{
+			class actionPlayVideo;
+		};
+		class playVideoCategory
+		{
+			class playFilm;
+		};
+	};
+};

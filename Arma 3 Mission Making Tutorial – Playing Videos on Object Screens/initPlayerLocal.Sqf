@@ -1,0 +1,1 @@
+[Object_Screen] call TYST_fnc_actionPlayVideo; //Replace Object_Screen with the variable name for your screen
