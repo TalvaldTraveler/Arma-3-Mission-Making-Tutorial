@@ -1,0 +1,10 @@
+class CfgFunctions {
+	class TYST {
+		class VideoLogCategory {
+			class setupVideoLog;
+			class playVideoLog;
+			class setupVideoChapter;
+			class setupVideoChapter_1;
+		};
+	};
+};

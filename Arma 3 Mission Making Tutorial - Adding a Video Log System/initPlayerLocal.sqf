@@ -1,0 +1,1 @@
+[] call TYST_fnc_setupVideoLog;
