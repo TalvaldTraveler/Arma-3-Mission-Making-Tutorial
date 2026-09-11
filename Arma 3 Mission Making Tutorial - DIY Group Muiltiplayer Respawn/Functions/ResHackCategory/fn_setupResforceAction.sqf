@@ -18,7 +18,7 @@ _targetUnit addAction
 			};
 		} forEach units _caller;
 		_deadplayer = _deadplayers select 0;
-		[15] remoteExec ["setPlayerRespawnTime", _deadplayer];
+		[5] remoteExec ["setPlayerRespawnTime", _deadplayer];
 	},
 	nil,
 	1.5,
