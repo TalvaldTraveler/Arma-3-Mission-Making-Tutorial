@@ -1,0 +1,1 @@
+[reinforcement_unit_1] call TYST_fnc_setupResforce;

@@ -1,0 +1,13 @@
+respawn = 3;
+respawndelay = 5;
+respawnOnStart = -1;
+
+class CfgFunctions {
+	class TYST {
+		class ResHackCategory {
+			class setupResforce;
+			class setupResforceAction;
+			class setupResforceHoldAction;
+		};
+	};
+};
