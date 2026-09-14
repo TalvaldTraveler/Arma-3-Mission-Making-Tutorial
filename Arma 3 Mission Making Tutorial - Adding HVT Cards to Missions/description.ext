@@ -1,0 +1,17 @@
+respawn = 3;
+respawndelay = 3;
+respawnOnStart = -1;
+
+class CfgFunctions {
+	class TYST {
+		class IntelCategory {
+			class setupHVTCard;
+			class updatedHVTCard;
+		};
+		class ResHackCategory {
+			class setupResforce;
+			class setupResforceAction;
+			class setupResforceHoldAction;
+		};
+	};
+};
